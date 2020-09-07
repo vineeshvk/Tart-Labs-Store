@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ProjectColors {
-  static const fadedRed = Color(0xffdf4c4f);
-  static const buttonBorder = Color(0xffe40409);
+  static const fadedRed = Color(0xFFDF4C4F);
+  static const buttonBorder = Color(0xFFE40409);
+  static const appBarColor = Color(0xFF074576);
 }

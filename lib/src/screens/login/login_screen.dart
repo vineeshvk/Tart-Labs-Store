@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:tartlabsstore/src/screens/home/home_screen.dart';
 import 'package:tartlabsstore/src/utils/image_resources.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 import 'package:tartlabsstore/src/widgets/input_field.dart';
 import 'package:tartlabsstore/src/widgets/primary_button.dart';
 
-class LoginScreen extends StatelessWidget {
-  _signInOnPressed() {}
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  _signInOnPressed() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +25,14 @@ class LoginScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 40),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(ImageResources.loginBackground),
+            image: AssetImage(ImageResources.loginBackgroundImage),
             fit: BoxFit.cover,
           ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(ImageResources.tartlabsLogo),
+            Image.asset(ImageResources.tartlabsLogoImage),
             Container(margin: EdgeInsets.only(top: 40)),
             InputField(
               label: StringResources.emailText,
