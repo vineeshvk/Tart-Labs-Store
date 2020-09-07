@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class DisplayCard extends StatelessWidget {
+class AppDisplayCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String date;
+  final bool isSelectable;
   final void Function() onTap;
 
-  DisplayCard({
+  AppDisplayCard({
     @required this.imageUrl,
     @required this.title,
     @required this.date,
     this.onTap,
+    this.isSelectable = true,
   });
 
   @override
@@ -36,7 +38,7 @@ class DisplayCard extends StatelessWidget {
             Image.network(imageUrl, width: 67, height: 67),
             Container(margin: EdgeInsets.only(left: 10)),
             getDetailTextWidget(),
-            Icon(Icons.navigate_next)
+            if (isSelectable) Icon(Icons.navigate_next)
           ],
         ),
       ),

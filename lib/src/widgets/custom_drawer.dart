@@ -10,7 +10,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  
+
   void _onMyAppSelected() {
     Navigator.pop(context);
   }
@@ -57,7 +57,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               height: 150,
             ),
             Text(
-              StringResources.userText,
+              StringResources.tempUserText,
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,

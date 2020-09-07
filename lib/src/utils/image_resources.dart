@@ -4,6 +4,7 @@ class ImageResources {
   static const tartlabsStoreAppBarImage =
       "assets/images/tartlabs_store_appbar.png";
 
-  static const storeAppImage =
+  //Temporary
+  static const tempAppImage =
       "https://m.plonga.com/uploads/thumbs/break-liner-mobile.jpg";
 }

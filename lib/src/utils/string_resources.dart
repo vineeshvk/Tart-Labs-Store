@@ -7,9 +7,11 @@ class StringResources {
   static const storeText = "Store";
   static const myAppsText = "My Apps";
   static const logoutText = "Logout";
+  static const installText = "Install";
 
   //Temporary
-  static const userText = "Gowtham Raj";
-  static const titleText = "Break Liner";
-  static const dateText = "Oct 31";
+  static const tempUserText = "Gowtham Raj";
+  static const tempAppTitleText = "Break Liner";
+  static const tempDateText = "Oct 31";
+  static const tempBugFixText = "UI changes and Bug fixasdfasfsadfasdfsfes";
 }
