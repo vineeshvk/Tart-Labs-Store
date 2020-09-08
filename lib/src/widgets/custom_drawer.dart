@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tartlabsstore/src/authentication/authentication_bloc.dart';
+import 'package:tartlabsstore/src/authentication/authentication_event.dart';
 import 'package:tartlabsstore/src/utils/colors.dart';
 import 'package:tartlabsstore/src/utils/image_resources.dart';
-import 'package:tartlabsstore/src/utils/preference_helper.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -10,9 +12,12 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  AuthenticationBloc _authenticationBloc;
+
   @override
   void initState() {
     super.initState();
+    _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
   }
 
   void _onMyAppSelected() {
@@ -20,7 +25,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   void _onLogoutSelected() {
-    PreferenceHelper.removeToken();
+    _authenticationBloc.add(AuthenticationLoggedOutEvent());
   }
 
   @override
@@ -102,6 +107,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   void dispose() {
+    _authenticationBloc.close();
     super.dispose();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tartlabsstore/routes.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
 import 'package:tartlabsstore/src/screens/app-details/app_details_screen.dart';
 import 'package:tartlabsstore/src/screens/home/bloc/app_store_bloc.dart';
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: addAuthBloc(context, CustomDrawer()),
       appBar: CustomAppBar(
         title: Image.asset(
           ImageResources.tartlabsStoreAppBarImage,

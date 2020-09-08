@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tartlabsstore/src/authentication/authentication_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_event.dart';
 import 'package:tartlabsstore/src/repositories/login_repository.dart';
@@ -34,6 +35,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           yield LoginFailureState("Login fail");
         }
       } catch (e) {
+        Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          fontSize: 16.0,
+        );
         yield LoginFailureState(e.toString());
       }
     }
