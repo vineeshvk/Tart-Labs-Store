@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tartlabsstore/src/models/app_model.dart';
 import 'package:tartlabsstore/src/screens/previous-app/previous_app_screen.dart';
 import 'package:tartlabsstore/src/utils/colors.dart';
-import 'package:tartlabsstore/src/utils/image_resources.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
 import 'package:tartlabsstore/src/widgets/primary_button.dart';
 
 class AppDetailsScreen extends StatefulWidget {
+  static const routeName = "/appdetails";
+  final AppModel appDetail;
+
+  AppDetailsScreen({this.appDetail});
+
   @override
   _AppDetailsScreenState createState() => _AppDetailsScreenState();
 }
@@ -17,10 +23,8 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
   void _onShareButtonPressed() {}
 
   void _onViewOldBuildButtonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PreviousAppScreen()),
-    );
+    Navigator.pushNamed(context, PreviousAppScreen.routeName,
+        arguments: PreviousAppScreenArguments(widget.appDetail));
   }
 
   @override
@@ -28,7 +32,7 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
     return Scaffold(
       appBar: CustomAppBar(
         title: Text(
-          StringResources.tempAppTitleText,
+          widget.appDetail.appName,
           style: TextStyle(fontSize: 24),
         ),
       ),
@@ -66,7 +70,7 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.network(
-            ImageResources.tempAppImage,
+            widget.appDetail.appLogo,
             width: 67,
             height: 67,
           ),
@@ -76,11 +80,11 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  StringResources.tempAppTitleText,
+                  widget.appDetail.appName,
                   style: TextStyle(fontSize: 16),
                 ),
                 Text(
-                  StringResources.tempDateText,
+                  DateFormat.MMMd().format(widget.appDetail.updatedAt),
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
@@ -120,7 +124,7 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
     return Container(
       padding: EdgeInsets.all(16),
       child: Text(
-        StringResources.tempAppDescriptionText,
+        widget.appDetail.appDescription,
         style: TextStyle(color: Colors.grey, fontSize: 12),
       ),
     );
@@ -179,4 +183,10 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
       ),
     );
   }
+}
+
+class AppDetailsScreenArguments {
+  final AppModel appDetail;
+
+  AppDetailsScreenArguments(this.appDetail);
 }

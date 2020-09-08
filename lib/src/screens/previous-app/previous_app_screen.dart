@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:tartlabsstore/src/utils/image_resources.dart';
+import 'package:tartlabsstore/src/models/app_model.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 import 'package:tartlabsstore/src/widgets/app_display_card.dart';
 import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
 import 'package:tartlabsstore/src/widgets/version_display_card.dart';
 
-class PreviousAppScreen extends StatelessWidget {
+class PreviousAppScreen extends StatefulWidget {
+  static const routeName = "/previousapp";
+
+  final AppModel appDetail;
+
+  const PreviousAppScreen({Key key, this.appDetail}) : super(key: key);
+  @override
+  _PreviousAppScreenState createState() => _PreviousAppScreenState();
+}
+
+class _PreviousAppScreenState extends State<PreviousAppScreen> {
+  initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: change font family
       appBar: CustomAppBar(
         title: Text(
           StringResources.tempAppTitleText,
@@ -21,9 +34,7 @@ class PreviousAppScreen extends StatelessWidget {
         child: Column(
           children: [
             AppDisplayCard(
-              imageUrl: ImageResources.tempAppImage,
-              title: StringResources.tempAppTitleText,
-              date: StringResources.tempDateText,
+              app: widget.appDetail,
               isSelectable: false,
             ),
             Container(margin: EdgeInsets.only(top: 10)),
@@ -41,4 +52,10 @@ class PreviousAppScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class PreviousAppScreenArguments {
+  final AppModel appDetail;
+
+  PreviousAppScreenArguments(this.appDetail);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tartlabsstore/src/screens/login/login_screen.dart';
 import 'package:tartlabsstore/src/utils/colors.dart';
 import 'package:tartlabsstore/src/utils/image_resources.dart';
+import 'package:tartlabsstore/src/utils/preference_helper.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -10,16 +10,17 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void _onMyAppSelected() {
     Navigator.pop(context);
   }
 
   void _onLogoutSelected() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
+    PreferenceHelper.removeToken();
   }
 
   @override
@@ -97,5 +98,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
