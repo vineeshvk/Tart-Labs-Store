@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tartlabsstore/routes.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
 import 'package:tartlabsstore/src/screens/previous-app/previous_app_screen.dart';
-import 'package:tartlabsstore/src/utils/colors.dart';
+import 'package:tartlabsstore/src/utils/color_resources.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 import 'package:tartlabsstore/src/widgets/primary_button.dart';
 
 class AppDetailsScreen extends StatefulWidget {
-  static const routeName = "/appdetails";
   final AppModel appDetail;
 
   AppDetailsScreen({this.appDetail});
@@ -23,7 +24,7 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
   void _onShareButtonPressed() {}
 
   void _onViewOldBuildButtonPressed() {
-    Navigator.pushNamed(context, PreviousAppScreen.routeName,
+    Navigator.pushNamed(context, AppRoutes.PREVIOUS_APP_SCREEN,
         arguments: PreviousAppScreenArguments(widget.appDetail));
   }
 
@@ -31,9 +32,9 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: Text(
+        title: CustomText(
           widget.appDetail.appName,
-          style: TextStyle(fontSize: 24),
+          fontSize: 24,
         ),
       ),
       body: Container(
@@ -79,17 +80,12 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.appDetail.appName,
-                  style: TextStyle(fontSize: 16),
-                ),
-                Text(
+                CustomText(widget.appDetail.appName, fontSize: 16),
+                CustomText(
                   DateFormat.MMMd().format(widget.appDetail.updatedAt),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  fontSize: 12,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
                 ),
               ],
             ),
@@ -114,7 +110,7 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
             onPressed: _onShareButtonPressed,
             icon: Icon(Icons.share_outlined),
           ),
-          Text(StringResources.getSharableAppLinkText)
+          CustomText(StringResources.getSharableAppLinkText)
         ],
       ),
     );
@@ -123,10 +119,8 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
   getAppDescriptionWidget() {
     return Container(
       padding: EdgeInsets.all(16),
-      child: Text(
-        widget.appDetail.appDescription,
-        style: TextStyle(color: Colors.grey, fontSize: 12),
-      ),
+      child: CustomText(widget.appDetail.appDescription,
+          color: Colors.grey, fontSize: 12),
     );
   }
 
@@ -139,25 +133,23 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            ProjectColors.fadedRed.withOpacity(0.8),
-            ProjectColors.fadedRed.withOpacity(0.6),
+            ColorResources.FADED_RED.withOpacity(0.8),
+            ColorResources.FADED_RED.withOpacity(0.6),
           ],
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          CustomText(
             StringResources.whatsNewText,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
           Container(margin: EdgeInsets.only(top: 4)),
-          Text(
+          CustomText(
             StringResources.tempBugFixText,
-            style: TextStyle(color: Colors.white),
+            color: Colors.white,
           ),
           Container(margin: EdgeInsets.only(top: 4)),
         ],
@@ -173,11 +165,11 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
         margin: EdgeInsets.only(top: 10),
         child: Row(
           children: [
-            Text(
+            CustomText(
               StringResources.viewOlderBuildsText,
-              style: TextStyle(fontSize: 12),
+              fontSize: 12,
             ),
-            Icon(Icons.navigate_next, color: ProjectColors.fadedRed)
+            Icon(Icons.navigate_next, color: ColorResources.FADED_RED)
           ],
         ),
       ),

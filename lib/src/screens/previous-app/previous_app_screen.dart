@@ -3,11 +3,10 @@ import 'package:tartlabsstore/src/models/app_model.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 import 'package:tartlabsstore/src/widgets/app_display_card.dart';
 import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 import 'package:tartlabsstore/src/widgets/version_display_card.dart';
 
 class PreviousAppScreen extends StatefulWidget {
-  static const routeName = "/previousapp";
-
   final AppModel appDetail;
 
   const PreviousAppScreen({Key key, this.appDetail}) : super(key: key);
@@ -24,10 +23,7 @@ class _PreviousAppScreenState extends State<PreviousAppScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: Text(
-          StringResources.tempAppTitleText,
-          style: TextStyle(fontSize: 24),
-        ),
+        title: CustomText(StringResources.tempAppTitleText, fontSize: 24),
       ),
       body: Container(
         padding: EdgeInsets.all(10),

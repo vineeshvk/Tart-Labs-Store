@@ -32,9 +32,12 @@ dependencies:
     equatable: ^1.2.4
     dio: ^3.0.10
     fluttertoast: ^7.0.4
+
 dev_dependencies:
     flutter_test:
         sdk: flutter
+    json_serializable: ^3.4.1
+    build_runner: ^1.10.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

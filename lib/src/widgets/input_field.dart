@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 
 class InputField extends StatelessWidget {
   final String label;
@@ -20,12 +21,10 @@ class InputField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        CustomText(
           label,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
         ),
         Container(
           margin: EdgeInsets.only(top: 5),

@@ -12,7 +12,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Quicksand"),
-      onGenerateRoute: getRoute,
+      onGenerateRoute: Routes.getRoute,
       debugShowCheckedModeBanner: false,
       home: addAuthBloc(context, Container()),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 
 class AppDisplayCard extends StatelessWidget {
   final AppModel app;
@@ -52,14 +53,12 @@ class AppDisplayCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(app.appName, style: TextStyle(fontSize: 16)),
-          Text(
+          CustomText(app.appName,fontSize: 16),
+          CustomText(
             DateFormat.MMMd().format(app.updatedAt),
-            style: TextStyle(
               fontSize: 12,
               color: Colors.grey,
               fontWeight: FontWeight.bold,
-            ),
           )
         ],
       ),

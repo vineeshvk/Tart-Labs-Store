@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tartlabsstore/src/utils/colors.dart';
+import 'package:tartlabsstore/src/utils/color_resources.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String label;
@@ -13,17 +14,18 @@ class PrimaryButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4),
         side: BorderSide(
-          color: ProjectColors.buttonBorder,
+          color: ColorResources.BUTTON_BORDER,
           width: 2,
         ),
       ),
-      child: Text(
+      child: CustomText(
         label,
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
       ),
       padding: EdgeInsets.symmetric(horizontal: 27, vertical: 8),
       colorBrightness: Brightness.dark,
-      color: ProjectColors.fadedRed,
+      color: ColorResources.FADED_RED,
       onPressed: onPressed,
     );
   }

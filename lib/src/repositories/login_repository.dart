@@ -1,19 +1,19 @@
 import 'package:dio/dio.dart';
-import 'package:tartlabsstore/src/AppException.dart';
+import 'package:tartlabsstore/src/app_exception.dart';
 import 'package:tartlabsstore/src/responses/auth_response.dart';
-import 'package:tartlabsstore/src/utils/api_credentials.dart';
-import 'package:tartlabsstore/src/utils/api_endpoints.dart';
+import 'package:tartlabsstore/src/utils/constants.dart';
 import 'package:tartlabsstore/src/utils/dio_helper.dart';
+import 'package:tartlabsstore/src/utils/http_urls.dart';
 
 class LoginRepository {
   static Future<AuthResponse> login({email, password}) async {
     try {
-      final response = await dio.post(APIEndpoints.login, data: {
+      final response = await dio.post(HttpUrls.LOGIN, data: {
         "username": email,
         "password": password,
-        "grant_type": APICredentials.grantType,
-        "client_secret": APICredentials.clientSecret,
-        "client_id": APICredentials.clientId,
+        "grant_type": Constants.GRANT_TYPE,
+        "client_secret": Constants.CLIENT_SECRET,
+        "client_id": Constants.CLIENT_ID,
       });
 
       return AuthResponse.fromJson(response?.data);

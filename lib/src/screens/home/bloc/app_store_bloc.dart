@@ -11,8 +11,8 @@ class AppStoreBloc extends Bloc<AppStoreEvent, AppStoreState> {
     if (event is FetchAppEvent) {
       try {
         yield FetchAppLoadingState();
-        final apps = await AppStoreRepository.fetchApps();
-        yield FetchAppSuccessState(apps);
+        final response = await AppStoreRepository.fetchApps();
+        yield FetchAppSuccessState(response.apps);
       } catch (e) {
         yield FetchAppFailureState(e.toString());
       }

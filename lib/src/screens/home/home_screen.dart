@@ -12,7 +12,6 @@ import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
 import 'package:tartlabsstore/src/widgets/custom_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const routeName = "/home";
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -29,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onAppTilePressed(AppModel appDetail) {
-    Navigator.pushNamed(context, AppDetailsScreen.routeName,
+    Navigator.pushNamed(context, AppRoutes.APP_DETAILS_SCREEN,
         arguments: AppDetailsScreenArguments(appDetail));
   }
 
@@ -58,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             );
-          return Container();
+          return Center(child: CircularProgressIndicator());
         },
       ),
     );

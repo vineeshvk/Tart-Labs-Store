@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_event.dart';
-import 'package:tartlabsstore/src/utils/colors.dart';
+import 'package:tartlabsstore/src/utils/color_resources.dart';
 import 'package:tartlabsstore/src/utils/image_resources.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -62,13 +63,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ImageResources.tartlabsLogoImage,
               height: 150,
             ),
-            Text(
+            CustomText(
               StringResources.tempUserText,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             )
           ],
         ),
@@ -94,13 +93,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
       onTap: onTap,
       selected: selected,
       leading: Icon(icon, color: selected ? Colors.white : null),
-      selectedTileColor: selected ? ProjectColors.fadedRed : null,
-      title: Text(
+      selectedTileColor: selected ? ColorResources.FADED_RED : null,
+      title: CustomText(
         text,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: selected ? Colors.white : null,
-        ),
+        fontWeight: FontWeight.bold,
+        color: selected ? Colors.white : null,
       ),
     );
   }

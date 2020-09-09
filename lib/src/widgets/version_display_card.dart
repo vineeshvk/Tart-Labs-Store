@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
+import 'package:tartlabsstore/src/widgets/custom_text.dart';
 import 'package:tartlabsstore/src/widgets/primary_button.dart';
 
 class VersionDisplayCard extends StatelessWidget {
@@ -27,12 +28,10 @@ class VersionDisplayCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(
+            CustomText(
               StringResources.tempDateText,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
             GestureDetector(
               child: Icon(Icons.share),
@@ -40,7 +39,7 @@ class VersionDisplayCard extends StatelessWidget {
             )
           ]),
           Container(margin: EdgeInsets.only(top: 10)),
-          Text(StringResources.tempBugFixText),
+          CustomText(StringResources.tempBugFixText),
           Align(
             alignment: Alignment.bottomRight,
             child: PrimaryButton(

@@ -1,9 +1,24 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'app_model.g.dart';
+
+@JsonSerializable()
 class AppModel {
+  @JsonKey(name: 'id')
   final int id;
+
+  @JsonKey(name: 'app_name')
   final String appName;
+
+  @JsonKey(name: 'app_logo')
   final String appLogo;
+
+  @JsonKey(name: 'created_at')
   final DateTime createdAt;
+
+  @JsonKey(name: 'app_description')
   final String appDescription;
+
+  @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
 
   AppModel({
@@ -15,13 +30,7 @@ class AppModel {
     this.createdAt,
   });
 
-  factory AppModel.fromJson(Map json) {
-    return AppModel(
-      appName: json['app_name'],
-      createdAt: DateTime.parse(json['created_at']),
-      appDescription: json['app_description'],
-      appLogo: json['app_logo'],
-      updatedAt: DateTime.parse(json['updated_at']),
-    );
-  }
+  factory AppModel.fromJson(Map<String, dynamic> map) =>
+      _$AppModelFromJson(map);
+  Map<String, dynamic> toJson() => _$AppModelToJson(this);
 }

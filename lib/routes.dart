@@ -11,21 +11,33 @@ import 'package:tartlabsstore/src/screens/login/bloc/login_bloc.dart';
 import 'package:tartlabsstore/src/screens/login/login_screen.dart';
 import 'package:tartlabsstore/src/screens/previous-app/previous_app_screen.dart';
 
-Route<dynamic> getRoute(RouteSettings settings) {
-  switch (settings.name) {
-    case LoginScreen.routeName:
-      return PageRoutes.buildLoginScreen();
-    case HomeScreen.routeName:
-      return PageRoutes.buildHomeScreen();
-    case AppDetailsScreen.routeName:
-      final AppDetailsScreenArguments args = settings.arguments;
-      return PageRoutes.buildAppDetailsScreen(args.appDetail);
-    case PreviousAppScreen.routeName:
-      final PreviousAppScreenArguments args = settings.arguments;
-      return PageRoutes.buildPreviousAppScreen(args.appDetail);
+class AppRoutes {
+  static const LOGIN_SCREEN = 'login_screen';
+  static const HOME_SCREEN = 'home_screen';
+  static const APP_DETAILS_SCREEN = 'app_details_screen';
+  static const PREVIOUS_APP_SCREEN = 'previous_app_screen';
+}
 
-    default:
-      return null;
+class Routes {
+  static Route<dynamic> getRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case AppRoutes.LOGIN_SCREEN:
+        return PageRoutes.buildLoginScreen();
+
+      case AppRoutes.HOME_SCREEN:
+        return PageRoutes.buildHomeScreen();
+
+      case AppRoutes.APP_DETAILS_SCREEN:
+        final AppDetailsScreenArguments args = settings.arguments;
+        return PageRoutes.buildAppDetailsScreen(args.appDetail);
+
+      case AppRoutes.PREVIOUS_APP_SCREEN:
+        final PreviousAppScreenArguments args = settings.arguments;
+        return PageRoutes.buildPreviousAppScreen(args.appDetail);
+
+      default:
+        return null;
+    }
   }
 }
 
@@ -101,11 +113,11 @@ Widget addAuthBloc(BuildContext context, Widget widget) {
     listener: (context, state) {
       if (state is AuthenticationLoggedInState) {
         Navigator.pushNamedAndRemoveUntil(
-            context, HomeScreen.routeName, (v) => false);
+            context, AppRoutes.HOME_SCREEN, (v) => false);
       }
       if (state is AuthenticationLoggedOutState) {
         Navigator.pushNamedAndRemoveUntil(
-            context, LoginScreen.routeName, (v) => false);
+            context, AppRoutes.LOGIN_SCREEN, (v) => false);
       }
     },
     child: BlocBuilder(
