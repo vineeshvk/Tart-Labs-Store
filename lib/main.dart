@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:tartlabsstore/src/app.dart';
 import 'package:tartlabsstore/src/authentication/authentication_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_event.dart';
@@ -24,8 +25,9 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-main() {
+main() async {
   Bloc.observer = AppBlocObserver();
+  await FlutterDownloader.initialize(debug: true);
 
   runApp(
     BlocProvider<AuthenticationBloc>(

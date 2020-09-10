@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_state.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
-import 'package:tartlabsstore/src/screens/app-details/app_details_screen.dart';
+import 'package:tartlabsstore/src/screens/app-detail/app_detail_screen.dart';
+import 'package:tartlabsstore/src/screens/app-detail/bloc/app_detail_bloc.dart';
 import 'package:tartlabsstore/src/screens/home/bloc/app_store_bloc.dart';
 import 'package:tartlabsstore/src/screens/home/home_screen.dart';
 import 'package:tartlabsstore/src/screens/login/bloc/login_bloc.dart';
@@ -28,7 +29,7 @@ class Routes {
         return PageRoutes.buildHomeScreen();
 
       case AppRoutes.APP_DETAILS_SCREEN:
-        final AppDetailsScreenArguments args = settings.arguments;
+        final AppDetailScreenArguments args = settings.arguments;
         return PageRoutes.buildAppDetailsScreen(args.appDetail);
 
       case AppRoutes.PREVIOUS_APP_SCREEN:
@@ -61,7 +62,12 @@ class PageBuilder {
   }
 
   static Widget buildAppDetailsScreenPage(AppModel appDetail) {
-    return AppDetailsScreen(appDetail: appDetail);
+    return BlocProvider<AppDetailBloc>(
+      create: (context) {
+        return AppDetailBloc();
+      },
+      child: AppDetailScreen(appDetail: appDetail),
+    );
   }
 
   static Widget buildPreviousAppScreenPage(AppModel appDetail) {

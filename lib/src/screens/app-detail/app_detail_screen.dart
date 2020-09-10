@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tartlabsstore/routes.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
+import 'package:tartlabsstore/src/screens/app-detail/bloc/app_detail_bloc.dart';
+import 'package:tartlabsstore/src/screens/app-detail/bloc/app_detail_event.dart';
+import 'package:tartlabsstore/src/screens/app-detail/bloc/app_detail_state.dart';
 import 'package:tartlabsstore/src/screens/previous-app/previous_app_screen.dart';
 import 'package:tartlabsstore/src/utils/color_resources.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
@@ -9,17 +13,27 @@ import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
 import 'package:tartlabsstore/src/widgets/custom_text.dart';
 import 'package:tartlabsstore/src/widgets/primary_button.dart';
 
-class AppDetailsScreen extends StatefulWidget {
+class AppDetailScreen extends StatefulWidget {
   final AppModel appDetail;
 
-  AppDetailsScreen({this.appDetail});
+  AppDetailScreen({this.appDetail});
 
   @override
-  _AppDetailsScreenState createState() => _AppDetailsScreenState();
+  _AppDetailScreenState createState() => _AppDetailScreenState();
 }
 
-class _AppDetailsScreenState extends State<AppDetailsScreen> {
-  void _onInstallButtonPressed() {}
+class _AppDetailScreenState extends State<AppDetailScreen> {
+  AppDetailBloc _appDetailBloc;
+
+  initState() {
+    super.initState();
+    _appDetailBloc = BlocProvider.of<AppDetailBloc>(context)
+      ..add(AppDetailFetchEvent(widget.appDetail.id));
+  }
+
+  void _onInstallButtonPressed(String url) {
+    _appDetailBloc.add(AppInstallPressedEvent(url));
+  }
 
   void _onShareButtonPressed() {}
 
@@ -90,12 +104,21 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: PrimaryButton(
-              label: StringResources.installText,
-              onPressed: _onInstallButtonPressed,
-            ),
+          BlocBuilder(
+            cubit: _appDetailBloc,
+            builder: (context, state) {
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: PrimaryButton(
+                  label: StringResources.installText,
+                  onPressed: () => _onInstallButtonPressed(
+                    state is AppDetailSuccessState
+                        ? state.appUrls.last.appUrl
+                        : "",
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),
@@ -175,10 +198,16 @@ class _AppDetailsScreenState extends State<AppDetailsScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _appDetailBloc.close();
+    super.dispose();
+  }
 }
 
-class AppDetailsScreenArguments {
+class AppDetailScreenArguments {
   final AppModel appDetail;
 
-  AppDetailsScreenArguments(this.appDetail);
+  AppDetailScreenArguments(this.appDetail);
 }

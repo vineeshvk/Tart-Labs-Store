@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tartlabsstore/routes.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
-import 'package:tartlabsstore/src/screens/app-details/app_details_screen.dart';
+import 'package:tartlabsstore/src/screens/app-detail/app_detail_screen.dart';
 import 'package:tartlabsstore/src/screens/home/bloc/app_store_bloc.dart';
 import 'package:tartlabsstore/src/screens/home/bloc/app_store_event.dart';
 import 'package:tartlabsstore/src/screens/home/bloc/app_store_state.dart';
@@ -12,7 +12,6 @@ import 'package:tartlabsstore/src/widgets/custom_appbar.dart';
 import 'package:tartlabsstore/src/widgets/custom_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -28,8 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onAppTilePressed(AppModel appDetail) {
-    Navigator.pushNamed(context, AppRoutes.APP_DETAILS_SCREEN,
-        arguments: AppDetailsScreenArguments(appDetail));
+    Navigator.pushNamed(
+      context,
+      AppRoutes.APP_DETAILS_SCREEN,
+      arguments: AppDetailScreenArguments(appDetail),
+    );
   }
 
   @override
