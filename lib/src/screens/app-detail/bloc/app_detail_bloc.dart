@@ -23,7 +23,7 @@ class AppDetailBloc extends Bloc<AppDetailEvent, AppDetailState> {
     }
 
     if (event is DownloadAppEvent) {
-      await DownloadHelper.downloadFile(event.url, event.name);
+      await DownloadHelper.downloadFile(event.url, event.name,event.createdAt);
     }
 
     if (event is InstallAppFailedEvent) {

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:intl/intl.dart';
-import 'package:share/share.dart';
 import 'package:tartlabsstore/routes.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
 import 'package:tartlabsstore/src/models/app_url_model.dart';
@@ -56,7 +55,11 @@ class _AppDetailScreenState extends State<AppDetailScreen> {
   }
 
   void _onInstallButtonPressed(String url) {
-    _appDetailBloc.add(DownloadAppEvent(url, widget.appDetail.appName));
+    _appDetailBloc.add(DownloadAppEvent(
+      url,
+      widget.appDetail.appName,
+      widget.appDetail.updatedAt,
+    ));
   }
 
   void _onShareButtonPressed(String url) {

@@ -5,4 +5,5 @@ class Constants {
   static const GRANT_TYPE = 'password';
   static const REFRESH_GRANT_TYPE = 'refresh_token';
   static const PROVIDERS = 'user';
+  static const ANDROID_PACKAGE_NAME = "com.example.tartlabsstore";
 }

@@ -36,6 +36,7 @@ dependencies:
     path_provider: ^1.6.14
     permission_handler: ^5.0.1+1
     share: ^0.6.5
+    install_plugin: ^2.0.1
 
 dev_dependencies:
     flutter_test:

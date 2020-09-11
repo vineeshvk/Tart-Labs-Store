@@ -20,8 +20,9 @@ class AppDetailFetchEvent extends AppDetailEvent {
 class DownloadAppEvent extends AppDetailEvent {
   final String url;
   final String name;
+  final DateTime createdAt;
 
-  DownloadAppEvent(this.url, this.name);
+  DownloadAppEvent(this.url, this.name, this.createdAt);
 
   @override
   String toString() => "DownloadAppEvent";

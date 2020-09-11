@@ -10,7 +10,7 @@ class PreviousAppBloc extends Bloc<PreviousAppEvent, PreviousAppState> {
   @override
   Stream<PreviousAppState> mapEventToState(PreviousAppEvent event) async* {
     if (event is DownloadAppVersionEvent) {
-      await DownloadHelper.downloadFile(event.url, event.name);
+      await DownloadHelper.downloadFile(event.url, event.name,event.createdAt);
     }
 
     if (event is ShareAppUrlEvent) {

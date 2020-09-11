@@ -8,8 +8,9 @@ class PreviousAppEvent extends Equatable {
 class DownloadAppVersionEvent extends PreviousAppEvent {
   final String url;
   final String name;
+  final DateTime createdAt;
 
-  DownloadAppVersionEvent(this.url, this.name);
+  DownloadAppVersionEvent(this.url, this.name, this.createdAt);
 
   @override
   String toString() => "DownloadAppEvent";

@@ -48,15 +48,16 @@ class _PreviousAppScreenState extends State<PreviousAppScreen> {
     FlutterDownloader.registerCallback(DownloadHelper.downloadCallback);
   }
 
-  _onInstallButtonPressed(String url) {
+  _onInstallButtonPressed(int index) {
     _previousAppBloc.add(DownloadAppVersionEvent(
-      url,
+      widget.appUrls[index].appUrl,
       widget.appDetail.appName,
+      widget.appUrls[index].createdAt,
     ));
   }
 
-  _onShareButtonPressed(String url) {
-    _previousAppBloc.add(ShareAppUrlEvent(url));
+  _onShareButtonPressed(int index) {
+    _previousAppBloc.add(ShareAppUrlEvent(widget.appUrls[index].appUrl));
   }
 
   @override
@@ -82,9 +83,8 @@ class _PreviousAppScreenState extends State<PreviousAppScreen> {
                   return VersionDisplayCard(
                     previousApp: widget.appUrls[index],
                     onInstallButtonPressed: () =>
-                        _onInstallButtonPressed(widget.appUrls[index].appUrl),
-                    onShareButtonPressed: () =>
-                        _onShareButtonPressed(widget.appUrls[index].appUrl),
+                        _onInstallButtonPressed(index),
+                    onShareButtonPressed: () => _onShareButtonPressed(index),
                   );
                 },
               ),
