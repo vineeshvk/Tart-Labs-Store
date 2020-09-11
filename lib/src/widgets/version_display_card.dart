@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tartlabsstore/src/models/app_url_model.dart';
 import 'package:tartlabsstore/src/utils/string_resources.dart';
 import 'package:tartlabsstore/src/widgets/custom_text.dart';
 import 'package:tartlabsstore/src/widgets/primary_button.dart';
 
 class VersionDisplayCard extends StatelessWidget {
-  _onShareButtonPressed() {}
+  final AppUrlModel previousApp;
+  final void Function() onShareButtonPressed;
+  final void Function() onInstallButtonPressed;
 
-  _onInstallButtonPressed() {}
+  VersionDisplayCard({
+    this.previousApp,
+    this.onShareButtonPressed,
+    this.onInstallButtonPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
       padding: EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -29,22 +36,22 @@ class VersionDisplayCard extends StatelessWidget {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CustomText(
-              StringResources.tempDateText,
+              DateFormat.MMMd().format(previousApp.createdAt),
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
             GestureDetector(
-              child: Icon(Icons.share),
-              onTap: _onShareButtonPressed,
+              child: Icon(Icons.share_outlined),
+              onTap: onShareButtonPressed,
             )
           ]),
           Container(margin: EdgeInsets.only(top: 10)),
-          CustomText(StringResources.tempBugFixText),
+          CustomText(previousApp.description),
           Align(
             alignment: Alignment.bottomRight,
             child: PrimaryButton(
               label: StringResources.installText,
-              onPressed: _onInstallButtonPressed,
+              onPressed: onInstallButtonPressed,
             ),
           )
         ],

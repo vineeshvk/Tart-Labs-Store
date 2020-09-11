@@ -22,15 +22,15 @@ class AppUrlModel {
   @JsonKey(name: 'description')
   final String description;
 
-  @JsonKey(name: 'app_version')
-  final double appVersion;
+  // @JsonKey(name: 'app_version')
+  // final double appVersion;
 
   @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
 
   AppUrlModel({
     this.appUrl,
-    this.appVersion,
+    // this.appVersion,
     this.id,
     this.appLogo,
     this.description,

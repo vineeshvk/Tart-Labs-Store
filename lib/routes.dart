@@ -4,12 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_bloc.dart';
 import 'package:tartlabsstore/src/authentication/authentication_state.dart';
 import 'package:tartlabsstore/src/models/app_model.dart';
+import 'package:tartlabsstore/src/models/app_url_model.dart';
 import 'package:tartlabsstore/src/screens/app-detail/app_detail_screen.dart';
 import 'package:tartlabsstore/src/screens/app-detail/bloc/app_detail_bloc.dart';
 import 'package:tartlabsstore/src/screens/home/bloc/app_store_bloc.dart';
 import 'package:tartlabsstore/src/screens/home/home_screen.dart';
 import 'package:tartlabsstore/src/screens/login/bloc/login_bloc.dart';
 import 'package:tartlabsstore/src/screens/login/login_screen.dart';
+import 'package:tartlabsstore/src/screens/previous-app/bloc/previous_app_bloc.dart';
 import 'package:tartlabsstore/src/screens/previous-app/previous_app_screen.dart';
 
 class AppRoutes {
@@ -34,7 +36,7 @@ class Routes {
 
       case AppRoutes.PREVIOUS_APP_SCREEN:
         final PreviousAppScreenArguments args = settings.arguments;
-        return PageRoutes.buildPreviousAppScreen(args.appDetail);
+        return PageRoutes.buildPreviousAppScreen(args.appDetail, args.appUrls);
 
       default:
         return null;
@@ -70,8 +72,16 @@ class PageBuilder {
     );
   }
 
-  static Widget buildPreviousAppScreenPage(AppModel appDetail) {
-    return PreviousAppScreen(appDetail: appDetail);
+  static Widget buildPreviousAppScreenPage(
+    AppModel appDetail,
+    List<AppUrlModel> appUrls,
+  ) {
+    return BlocProvider<PreviousAppBloc>(
+      create: (context) {
+        return PreviousAppBloc();
+      },
+      child: PreviousAppScreen(appDetail: appDetail, appUrls: appUrls),
+    );
   }
 }
 
@@ -103,11 +113,12 @@ class PageRoutes {
     );
   }
 
-  static MaterialPageRoute buildPreviousAppScreen(AppModel appDetail) {
+  static MaterialPageRoute buildPreviousAppScreen(
+      AppModel appDetail, List<AppUrlModel> appUrls) {
     return MaterialPageRoute(
       builder: (context) => addAuthBloc(
         context,
-        PageBuilder.buildPreviousAppScreenPage(appDetail),
+        PageBuilder.buildPreviousAppScreenPage(appDetail, appUrls),
       ),
     );
   }

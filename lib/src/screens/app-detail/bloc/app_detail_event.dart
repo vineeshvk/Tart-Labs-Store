@@ -17,11 +17,26 @@ class AppDetailFetchEvent extends AppDetailEvent {
   String toString() => "AppDetailFetchEvent";
 }
 
-class AppInstallPressedEvent extends AppDetailEvent {
+class DownloadAppEvent extends AppDetailEvent {
   final String url;
+  final String name;
 
-  AppInstallPressedEvent(this.url);
+  DownloadAppEvent(this.url, this.name);
 
   @override
-  String toString() => "AppInstallPressedEvent";
+  String toString() => "DownloadAppEvent";
+}
+
+class InstallAppFailedEvent extends AppDetailEvent {
+  @override
+  String toString() => "InstallAppFailedEvent";
+}
+
+class ShareAppUrlEvent extends AppDetailEvent {
+  final String url;
+
+  ShareAppUrlEvent(this.url);
+
+  @override
+  String toString() => "ShareAppUrlEvent";
 }
